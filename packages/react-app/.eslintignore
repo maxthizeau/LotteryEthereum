@@ -1,0 +1,11 @@
+# folders
+build/
+node_modules/
+helpers/formatters.ts
+# files
+**/*.less
+**/*.css
+**/*.scss
+**/*.json
+**/*.png
+**/*.svg

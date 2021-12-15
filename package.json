@@ -1,0 +1,40 @@
+{
+  "name": "my-scaffold-eth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": "true",
+  "scripts": {
+    "start": "yarn workspace @my-scaffold-eth/react-app start",
+    "build": "yarn workspace @my-scaffold-eth/react-app build",
+    "test": "yarn workspace @my-scaffold-eth/hardhat test",
+    "chain": "yarn workspace @my-scaffold-eth/hardhat chain",
+    "copytypes": "yarn workspace @my-scaffold-eth/hardhat copytypes",
+    "compile": "yarn workspace @my-scaffold-eth/hardhat compile",
+    "deploy": "yarn workspace @my-scaffold-eth/hardhat deploy",
+    "postdeploy": "yarn workspace @my-scaffold-eth/hardhat postdeploy",
+    "export": "yarn workspace @my-scaffold-eth/hardhat export",
+    "watch": "yarn workspace @my-scaffold-eth/hardhat  watch",
+    "accounts": "yarn workspace @my-scaffold-eth/hardhat accounts",
+    "balance": "yarn workspace @my-scaffold-eth/hardhat balance",
+    "send": "yarn workspace @my-scaffold-eth/hardhat send",
+    "generate": "yarn workspace @my-scaffold-eth/hardhat generate",
+    "account": "yarn workspace @my-scaffold-eth/hardhat account"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/hardhat",
+      "packages/react-app",
+      "packages/subgraph"
+    ]
+  },
+  "packageManager": "yarn@3.1.0",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "prettier": "^2.4.1",
+    "shx": "^0.3.3"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}

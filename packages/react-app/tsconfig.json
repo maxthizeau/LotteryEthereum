@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "ES2017"
+    ],
+    "sourceMap": true,
+    "allowJs": false,
+    "declarationMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "helpers/types"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src",
+    "src/helpers/__global.ts"
+  ],
+  "exclude": [
+    "**/node_modules",
+    ".husky",
+    "./src/styles/css",
+    "./tailwind.config.js",
+    "node_modules",
+    "**/.yalc/**/*",
+    ".yalc/**/*"
+  ]
+}
