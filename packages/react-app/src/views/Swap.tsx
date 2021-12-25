@@ -114,6 +114,7 @@ export const Swap = ({
   const ethComponentsSettings = useContext(EthComponentsSettingsContext)
   // const gasPrice = 1000000000
   // const gasPrice = useGasPrice(ethersContext.chainId, 'fast')
+
   const tx = transactor(ethComponentsSettings, ethersContext?.signer)
 
   const lotteryWriteContract = writeContracts['Lottery'] as LotteryContract
@@ -143,7 +144,6 @@ export const Swap = ({
   }
 
   const swap = async (): Promise<void> => {
-    console.log('swap begin')
     setLoadingSwap(true)
     await tx?.(
       lotteryWriteContract.buyLottyToken({ value: parseEther(coinInput) })

@@ -9,7 +9,7 @@ import {
 } from 'src/generated/contract-types'
 import styled from 'styled-components'
 
-import { transactor } from 'eth-components/functions'
+import { transactor } from 'src/hooks/transactor'
 import { EthComponentsSettingsContext } from 'eth-components/models'
 import { parseEther } from '@ethersproject/units'
 import CurrentDrawTab from 'src/components/Lottery/CurrentDrawTab'

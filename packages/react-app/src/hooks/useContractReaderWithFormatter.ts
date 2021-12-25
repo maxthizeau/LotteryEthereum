@@ -35,7 +35,7 @@ export const useContractReaderWithFormatter = <OutputT, OutputFormat>(
   const ethersContext = useEthersContext()
 
   const callContractFunction = useCallback(async () => {
-    console.log(contractFunctionInfo.functionArgs)
+    // console.log(contractFunctionInfo.functionArgs)
 
     const contractFunction = contract.functions?.[
       contractFunctionInfo.functionName

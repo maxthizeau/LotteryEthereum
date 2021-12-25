@@ -1,11 +1,13 @@
 import React, { ReactElement, ReactNode } from 'react'
-import { Menu, Layout } from 'antd'
+import { Menu, Layout, Alert } from 'antd'
 import { useLocation, Link } from 'react-router-dom'
 import { Account } from './common/Account'
 import { IScaffoldAppProviders } from '../hooks/useScaffoldAppProviders'
 import PageLayoutFooter from './PageLayoutFooter'
 import { formatEther } from '@ethersproject/units'
 import { round } from '../helpers/utils'
+import { OWNER_ADDRESS } from 'src/config/constants'
+import { useEthersContext } from 'eth-hooks/context'
 
 const { Header, Content, Footer } = Layout
 
@@ -15,6 +17,7 @@ interface IPageLayoutProps {
   price: number
   gasPrice: number
   ltyBalance: string
+  userAddress: string
 }
 
 export const PageLayout = ({
@@ -23,7 +26,9 @@ export const PageLayout = ({
   price,
   gasPrice,
   ltyBalance,
+  userAddress,
 }: IPageLayoutProps): ReactElement => {
+  const ethersContext = useEthersContext()
   const location = useLocation()
 
   // const accountProps : IAccountProps = {
@@ -33,6 +38,12 @@ export const PageLayout = ({
   return (
     <>
       <Layout>
+        {ethersContext?.chainId !== 42 && (
+          <Alert
+            message={`Warning : Lotty is running on Kovan Testnet. Please select the right chain on your wallet provider (i.e. Metamask).`}
+            banner
+          />
+        )}
         <Header
           style={{
             display: 'flex',
@@ -72,6 +83,11 @@ export const PageLayout = ({
             <Menu.Item key="/how-to-play">
               <Link to="/how-to-play">How to play ?</Link>
             </Menu.Item>
+            {OWNER_ADDRESS === userAddress && (
+              <Menu.Item key="/owner">
+                <Link to="/owner">Owner</Link>
+              </Menu.Item>
+            )}
           </Menu>
           <div style={{ marginRight: '25px', lineHeight: '1.2em' }}>
             {round(Number(formatEther(ltyBalance)), 4)}

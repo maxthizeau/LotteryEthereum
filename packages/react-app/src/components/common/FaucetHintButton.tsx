@@ -63,6 +63,8 @@ export const FaucetHintButton: FC<IFaucetButton> = (props) => {
     )
     // console.log('faucet : ', min)
     if (
+      ethersContext.chainId &&
+      ethersContext.chainId === 31337 &&
       !faucetClicked &&
       faucetAvailable &&
       yourLocalBalance &&

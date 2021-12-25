@@ -34,7 +34,7 @@ declare module 'hardhat/types/runtime' {
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 
-const defaultNetwork = 'localhost';
+const defaultNetwork = 'kovan';
 
 const getMnemonic = () => {
   try {
@@ -72,31 +72,31 @@ const config: HardhatUserConfig = {
       // },
     },
     rinkeby: {
-      url: 'https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: 'https://rinkeby.infura.io/v3/18c72f27b94e4d728c24bae88aa2126c', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     kovan: {
-      url: 'https://kovan.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: 'https://kovan.infura.io/v3/18c72f27b94e4d728c24bae88aa2126c', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     mainnet: {
-      url: 'https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: 'https://mainnet.infura.io/v3/18c72f27b94e4d728c24bae88aa2126c', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     ropsten: {
-      url: 'https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: 'https://ropsten.infura.io/v3/18c72f27b94e4d728c24bae88aa2126c', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: getMnemonic(),
       },
     },
     goerli: {
-      url: 'https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad', // <---- YOUR INFURA ID! (or it won't work)
+      url: 'https://goerli.infura.io/v3/18c72f27b94e4d728c24bae88aa2126c', // <---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: getMnemonic(),
       },
@@ -109,8 +109,8 @@ const config: HardhatUserConfig = {
       },
     },
     mumbai: {
-      url: 'https://rpc-mumbai.maticvigil.com',
-      gasPrice: 1000000000,
+      url: 'https://rpc-mumbai.maticvigil.com/',
+      gasPrice: 33000000000,
       accounts: {
         mnemonic: getMnemonic(),
       },
@@ -335,7 +335,7 @@ task('account', 'Get balance informations for the deployment account.', async (_
     // console.log(config.networks[n],n)
     try {
       const { url } = config.networks[n] as HttpNetworkUserConfig;
-      const provider = new ethers.providers.JsonRpcProvider('');
+      const provider = new ethers.providers.JsonRpcProvider(url);
       const balance = await provider.getBalance(address);
       console.log(` -- ${n} --  -- -- 📡 `);
       console.log(`   balance: ${ethers.utils.formatEther(balance)}`);

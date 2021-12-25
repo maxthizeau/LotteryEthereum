@@ -1,6 +1,7 @@
 pragma solidity >=0.8.0 <0.9.0;
 //SPDX-License-Identifier: MIT
-import 'hardhat/console.sol';
+
+// import 'hardhat/console.sol';
 import './LotteryHelper.sol';
 import './LottyToken.sol';
 import './interfaces/IRandomNumberGenerator.sol';
@@ -90,12 +91,22 @@ contract LotteryFactory is LotteryHelper, Ownable {
     randomGenerator = IRandomNumberGenerator(_IRandomNumberGenerator);
   }
 
+  function viewRandomNumberGenerator() external view returns (address) {
+    return address(randomGenerator);
+  }
+
   function withdraw() external onlyOwner {
     // Withdraw ETH collected for the LTY token sale
     (bool sent, ) = owner().call{value: address(this).balance}('');
     require(sent, 'Failed to send Ether');
     TransferHelper.safeTransfer(LTY, owner(), devFeeBalance);
     devFeeBalance = 0;
+  }
+
+  function burn() external onlyOwner {
+    // (bool sent, ) = address(LTY).call{value: address(this).balance}('');
+    ILottyToken.burn(address(this), burnBalance);
+    burnBalance = 0;
   }
 
   function _getTicketsByOwner(address _owner) external view returns (uint256[] memory) {

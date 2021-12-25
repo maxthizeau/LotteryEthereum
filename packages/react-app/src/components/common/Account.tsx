@@ -144,7 +144,7 @@ export const Account: FC<IAccountProps> = (props: IAccountProps) => {
             <br />
 
             <a
-              href={`${props.blockExplorer}/${resolvedAddress}`}
+              href={`${props.blockExplorer}address/${resolvedAddress}`}
               target="_blank"
               rel="noreferrer"
               style={{ fontSize: '0.9em', lineHeight: '1.4em' }}

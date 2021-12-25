@@ -24,6 +24,7 @@ export const useSimpleContractReader = <T, U extends BaseContract>(
 ): T | undefined => {
   const ethersContext = useEthersContext()
   const [value, setValue] = useState<T>()
+
   useEffect(() => {
     const callFunc = async (): Promise<void> => {
       for (let i = 0; i < nullIfUndefined.length; i++) {
@@ -32,9 +33,10 @@ export const useSimpleContractReader = <T, U extends BaseContract>(
           return
         }
       }
-
+      // console.log('CALL FUNC')
       if (contractReader && contractReader?.[contractName]) {
         // console.log('CALLFUNC ')
+
         const readContracts = contractReader?.[contractName] as U
         // const args = functionArgs as const
         const res = await readContracts.functions?.[functionName]?.call(
@@ -48,6 +50,7 @@ export const useSimpleContractReader = <T, U extends BaseContract>(
         }
       }
     }
+
     void callFunc()
   }, [
     contractReader,

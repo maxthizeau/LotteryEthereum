@@ -7,7 +7,7 @@ import { INFURA_ID } from 'src/config/constants'
 
 // import { ConnectToStaticJsonRpcProvider } from 'eth-hooks/context'
 // import { StaticJsonRpcProvider } from '@ethersproject/providers'
-import { localNetworkInfo } from './providersConfig'
+// import { localNetworkInfo } from './providersConfig'
 
 // network: 'mainnet', // Optional. If using WalletConnect on xDai, change network to "xdai" and add RPC info below for xDai chain.
 export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
@@ -26,31 +26,32 @@ export const getWeb3ModalConfig = async (): Promise<Partial<ICoreOptions>> => {
         1: `https://mainnet.infura.io/v3/${INFURA_ID}`,
         42: `https://kovan.infura.io/v3/${INFURA_ID}`,
         100: 'https://dai.poa.network',
+        80001: `https://rpc-mumbai.maticvigil.com`,
       },
     },
   }
 
-  const localhostStaticConnector = {
-    display: {
-      logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
-      name: 'BurnerWallet',
-      description: '🔥 Connect to localhost with a burner wallet 🔥',
-    },
-    package: StaticJsonRpcProvider,
-    connector: ConnectToStaticJsonRpcProvider,
-    options: {
-      chainId: localNetworkInfo.chainId,
-      rpc: {
-        [localNetworkInfo.chainId]: localNetworkInfo.rpcUrl,
-      },
-    },
-  }
+  // const localhostStaticConnector = {
+  //   display: {
+  //     logo: 'https://avatars.githubusercontent.com/u/56928858?s=200&v=4',
+  //     name: 'BurnerWallet',
+  //     description: '🔥 Connect to localhost with a burner wallet 🔥',
+  //   },
+  //   package: StaticJsonRpcProvider,
+  //   connector: ConnectToStaticJsonRpcProvider,
+  //   options: {
+  //     chainId: localNetworkInfo.chainId,
+  //     rpc: {
+  //       [localNetworkInfo.chainId]: localNetworkInfo.rpcUrl,
+  //     },
+  //   },
+  // }
 
   return {
     cacheProvider: true,
     theme: 'light',
     providerOptions: {
-      'custom-localhost': localhostStaticConnector,
+      // 'custom-localhost': localhostStaticConnector,
       walletconnect: walletConnectEthereum,
     },
   }

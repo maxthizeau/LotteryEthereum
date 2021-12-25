@@ -2,8 +2,6 @@ import { DeployFunction } from 'hardhat-deploy/types';
 import { parseEther } from 'ethers/lib/utils';
 import { HardhatRuntimeEnvironmentExtended } from 'helpers/types/hardhat-type-extensions';
 import { ethers } from 'hardhat';
-import { LottyToken } from '../helpers/types/contract-types/LottyToken';
-import { Lottery } from '../../react-app/src/generated/contract-types/Lottery';
 import { CHAINLINK_NETWORKS } from 'helpers/chainlink_networks';
 import { BigNumber } from 'ethers';
 
@@ -13,7 +11,10 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironmentExtended) => {
   const { deployer } = await getNamedAccounts();
   const chainlinkConfig = CHAINLINK_NETWORKS[hre.network.name];
   const lottery = await ethers.getContract('Lottery', deployer);
+  console.log(`Lottery Contract : ${lottery.address}`);
+  console.log(`ChainLink Config for ${hre.network.name}`);
 
+  // Deploy Mock ERC20 & Coordinator if localhost
   if (hre.network.name == 'localhost') {
     console.log('Localhost detected : using Mock ERC20 and VRF Coordinator (to use Chainlink VRF)');
     // Deploy Link Token
@@ -35,13 +36,18 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironmentExtended) => {
     console.log('Deployed Link Token at', linkToken.address);
     console.log('Deployed VRF Coordinator at', vrfCoordinator.address);
   }
+  console.log(chainlinkConfig.vrfCoordinator, chainlinkConfig.linkToken, chainlinkConfig.keyHash, BigNumber.from(chainlinkConfig.fee), lottery.address);
 
-  const randomGenerator = await deploy('RandomNumberGenerator', {
+  console.log(`Gas price : ${hre.network.config.gasPrice}`);
+  await deploy('RandomNumberGenerator', {
     from: deployer,
-    args: [chainlinkConfig.vrfCoordinator, chainlinkConfig.linkToken, chainlinkConfig.keyHash, chainlinkConfig.fee, lottery.address],
+    args: [chainlinkConfig.vrfCoordinator, chainlinkConfig.linkToken, chainlinkConfig.keyHash, BigNumber.from(chainlinkConfig.fee), lottery.address],
     log: true,
   });
 
+  // await randomGenerator.deployed();
+  console.log('Change Lottery RNG..');
+  const randomGenerator = await ethers.getContract('RandomNumberGenerator', deployer);
   await lottery.setRandomNumberGenerator(randomGenerator.address);
 
   if (hre.network.name == 'localhost') {

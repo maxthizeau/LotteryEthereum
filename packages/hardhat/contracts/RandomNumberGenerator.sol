@@ -41,7 +41,7 @@ contract RandomNumberGenerator is VRFConsumerBase, ConfirmedOwner(msg.sender) {
 
   function getRandomNumber(uint256 userProvidedSeed) external onlyLottery returns (bytes32 requestId) {
     require(LINK.balanceOf(address(this)) >= fee, 'Not enough LINK - fill contract with faucet');
-    return requestRandomness(keyHash, userProvidedSeed);
+    return requestRandomness(keyHash, fee);
   }
 
   // It's possible to get multiple numbers from a single VRF response:

@@ -42,7 +42,7 @@ export const useScaffoldProviders = (): IScaffoldAppProviders => {
       if (web3Config) {
         const connector = new EthersModalConnector(
           { ...web3Config },
-          { reloadOnNetworkChange: false, immutableProvider: false },
+          { reloadOnNetworkChange: true, immutableProvider: true },
           id
         )
         return connector
