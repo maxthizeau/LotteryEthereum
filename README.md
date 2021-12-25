@@ -27,7 +27,7 @@ You can find more information on the "How to play" page.
 
 ## Lottery
 
-![image](https://user-images.githubusercontent.com/32738472/147385562-9bccb5df-9583-4a4b-96b4-32b74486f1a3.png
+![image](https://user-images.githubusercontent.com/32738472/147385562-9bccb5df-9583-4a4b-96b4-32b74486f1a3.png)
 
 - Buy Tickets
 
