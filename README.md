@@ -2,7 +2,7 @@
 
 > 🚀 Lottery dApp using [Scaffold Eth](https://github.com/scaffold-eth/scaffold-eth) components/hooks, and [Scaffold Eth Typescript](https://github.com/scaffold-eth/scaffold-eth-typescript)
 
-> 👨‍🎨 Since I'm not a great web designer, the design I used is inspired by [Raydium](https://raydium.io/)
+> 👨‍🎨 The design I used is inspired by [Raydium](https://raydium.io/)
 
 # 🔍 Features
 
